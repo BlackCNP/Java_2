@@ -3,7 +3,7 @@ public class Product {
     private int id;
     private String name;
     private double price;
-
+    // private String description;
     private Category category;
 
     public Product(int id, String name, double price, String description, Category category) {
@@ -39,7 +39,13 @@ public class Product {
         this.price = price;
     }
 
+   /* public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }*/
 
     public Category getCategory() {
         return category;

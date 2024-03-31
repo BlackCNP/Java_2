@@ -20,15 +20,20 @@ public class Main {
         Category smartphones = new Category(2, "Смартфони");
         Category accessories = new Category(3, "Аксесуари");
 
-        Product product1 = new Product(1, "Ноутбук", 19999.99, "Високопродуктивний ноутбук для роботи та ігор", electronics);
-        Product product2 = new Product(2, "Смартфон", 12999.50, "Смартфон з великим екраном…", smartphones);
-        Product product3 = new Product(3, "Навушники", 2499.00, "Бездротові навушники з шумозаглушенням", accessories);
-
+        Product product1 = new Product(1, "Ноутбук Acer", 19999.99, "Високопродуктивний ноутбук для роботи та ігор", electronics);
+        Product product2 = new Product(2, "Смартфон Vivo", 12999.50, "Смартфон з великим екраном…", smartphones);
+        Product product3 = new Product(3, "Навушники Realme", 2499.00, "Бездротові навушники з шумозаглушенням", accessories);
+        Product product4 = new Product(4, "Ноутбук Rog", 19999.99, "Високопродуктивний ноутбук для роботи та ігор", electronics);
+        Product product5 = new Product(5, "Смартфон Nothing Phone (1)", 16338.00, "Смартфон з великим екраном…", smartphones);
+        Product product6 = new Product(6, "Навушники Fifine H6P RGB", 1999.00, "Бездротові навушники з шумозаглушенням", accessories);
         products = new ArrayList<>();
         cart = new Cart();
         products.add(product1);
         products.add(product2);
         products.add(product3);
+        products.add(product4);
+        products.add(product5);
+        products.add(product6);
 
         orders = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
@@ -46,7 +51,7 @@ public class Main {
                 case 1:
                     // Перегля
                     for (Product product : products) {
-                        System.out.println("ID: " + product.getId() + ", Назва: " + product.getName() + ", Ціна: " + product.getPrice() + ", Category: " + product.getCategory().getName());
+                        System.out.println("ID: " + product.getId() + ", Назва: " + product.getName() + ", Ціна: " + product.getPrice() + ", Катигорія: " + product.getCategory().getName());
                     }
                     break;
                 case 2:
