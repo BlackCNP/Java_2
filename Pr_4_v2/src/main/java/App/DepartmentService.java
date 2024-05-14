@@ -32,5 +32,13 @@ public class DepartmentService {
         departments.add(new Department(++ID, "ІНЖЕНЕРІЇ ПРОГРАМНОГО ЗАБЕЗПЕЧЕННЯ", "ІПЗ", "249-25-96", "315 (кім. 3, 4)"));
         departments.add(new Department(++ID, "КОМП'ЮТЕРНОЇ ІНЖЕНЕРІЇ", "КІ", "(097)-527-49-26", "218"));
     }
-
+    public void updateDepartment(Department department) {
+        Department existingDepartment = getDepartmentById(department.getId());
+        if (existingDepartment != null) {
+            existingDepartment.setName(department.getName());
+            existingDepartment.setTitle(department.getTitle());
+            existingDepartment.setPhone(department.getPhone());
+            existingDepartment.setClassroom(department.getClassroom());
+        }
+    }
 }

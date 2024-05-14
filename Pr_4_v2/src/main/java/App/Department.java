@@ -13,5 +13,7 @@ public class Department {
     private String title;
     private String phone;
     private String classroom;
+
+
 }
 

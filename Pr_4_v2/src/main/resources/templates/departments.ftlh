@@ -13,6 +13,7 @@
             Кафедра: <a href="/departments/${department.id}">${department.name}</a> (Заголовок: ${department.title}, Телефон: ${department.phone}, Аудиторія: ${department.classroom})
             <form action="/departments/delete/${department.id}" method="post" style="display:inline;">
                 <input type="submit" value="Видалити">
+
             </form>
         </li>
     </#list>
