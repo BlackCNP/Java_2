@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Онолення
 ## Метод для відображення форми редагування кафедри (GET)
 ```java
@@ -305,9 +305,10 @@ existingDepartment.setClassroom(department.getClassroom());
 Результат
 
 ![](pht/gif.gif)
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake.svg">
   <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake.svg">
 </picture>
->>>>>>> 76d6fa9f1025fa1a4de2203ebc4035f9cbd0166f
+
