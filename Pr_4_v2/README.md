@@ -112,6 +112,7 @@
 Детальна інфорація
 ![](pht/detail.png)
 Результат
+
 ![](pht/gif.gif)
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake-dark.svg">
