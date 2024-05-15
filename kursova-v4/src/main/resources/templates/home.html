@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,7 @@
     <h1>Блогі на кожень день</h1>
     <hr />
     <ul>
-        <li><a th:href="@{/posts/new}">Створити Пост</a></li>
+        <li><a th:href="@{/posts/create}">Створити Пост</a></li>
     </ul>
     <div class="posts-container">
         <div class="post" th:each="post : ${posts}">
@@ -23,11 +24,20 @@
         </div>
     </div>
     <hr />
-    <ul>
+    <ul sec:authorize="!isAuthenticated()">
         <li><a th:href="@{/register}">Регістрація</a></li>
         <li><a th:href="@{/login}">Вхід до акаунту</a></li>
     </ul>
-
+    <div sec:authorize="isAuthenticated()">
+        <form class="#"
+              th:action="@{/logout}"
+              method="POST">
+            <div >
+                <label>Привіт, <span sec:authentication="name">Username</span></label>
+            </div>
+            <button type="submit">Вийти</button>
+        </form>
+    </div>
 </div>
 
 </body>

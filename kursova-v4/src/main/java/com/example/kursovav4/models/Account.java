@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -29,6 +31,13 @@ public class Account implements Serializable {
     @OneToMany(mappedBy = "account")
     private List<Post> posts;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_authority",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name")})
+    private Set<Authority> authorities = new HashSet<>();
+
     @Override
     public String toString() {
         return "Account{" +
@@ -36,6 +45,7 @@ public class Account implements Serializable {
                 ", firstName='" + firstName + "'" +
                 ", lastName='" + lastName + "'" +
                 ", email='" + email + "'" +
+                ", authorities=" + authorities +
                 "}";
     }
 

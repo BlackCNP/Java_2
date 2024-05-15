@@ -22,9 +22,24 @@ public class Post {
     String body;
 
     private LocalDateTime createdAt;
+
+    private LocalDateTime modifiedAt;
+
+
+
+
     @NotNull
     @ManyToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
-    Account account;
-
+    private Account account;
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", title='" + title + "'" +
+                ", body='" + body + "'" +
+                ", createdAt='" + createdAt + "'" +
+                ", updatedAt='" + modifiedAt + "'" +
+                "}";
+    }
 }
