@@ -26,8 +26,10 @@ public class PostService {
         if (post.getId() == null) {
             post.setCreatedAt(LocalDateTime.now());
         }
-
+        post.setModifiedAt(LocalDateTime.now());
         return postRepository.save(post);
     }
-
+    public void delete(Post post) {
+        postRepository.delete(post);
+    }
 }

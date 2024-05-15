@@ -14,6 +14,7 @@
         <h2 class="text-center" th:text="${post.title}">Title</h2>
         <h5 th:text="'Автор блогу: ' + ${post.account.firstName}">Імя Автора</h5>
         <h5 class="text-muted" th:text="'Дата ' + ${post.createdAt}">Дата створення</h5>
+        <h5 th:text="'Оновлено о ' + ${post.modifiedAt}">Дата Оновл</h5>
         <p th:text="${post.body}">Текст публікації</p>
     </div>
     <ul sec:authorize="isAuthenticated()">

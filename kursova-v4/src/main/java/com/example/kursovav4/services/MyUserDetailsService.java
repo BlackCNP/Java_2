@@ -34,6 +34,6 @@ public class MyUserDetailsService implements UserDetailsService {
                 .map(authority -> new SimpleGrantedAuthority(authority.getName()))
                 .collect(Collectors.toList());
 
-        return new User(account.getEmail(), account.getPassword(), grantedAuthorities); // (2)
+        return new User(account.getEmail(), account.getPassword(), grantedAuthorities);
     }
 }
