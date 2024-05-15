@@ -6,8 +6,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
+
+
+    <style>
+
+
+
+        #myBtnTop, #myBtnBottom {
+            display: none; /* Приховати кнопки за замовчуванням */
+            position: fixed; /* Зафіксувати положення кнопок */
+            right: 30px; /* Розташувати кнопки справа */
+            z-index: 99; /* Зробити кнопки над рівнем інших елементів */
+            border: none; /* Видалити рамку */
+            outline: none; /* Видалити контур */
+            background-color: #0f0; /* Задати колір фону */
+            color: white; /* Задати колір тексту */
+            cursor: pointer; /* Додати вказівник курсору при наведенні */
+            padding: 15px; /* Збільшити розмір кнопок */
+            border-radius: 10px; /* Закруглити кути кнопок */
+        }
+
+        #myBtnTop {
+            bottom: 60px; /* Розташувати кнопку "Наверх" трохи вище кнопки "Вниз" */
+        }
+
+        #myBtnBottom {
+            bottom: 20px; /* Розташувати кнопку "Вниз" внизу сторінки */
+        }
+
+        #myBtnTop:hover, #myBtnBottom:hover {
+            background-color: #555;
+        }
+
+    </style>
+
+
+
+
+
+
 </head>
 <body>
+
+<button onclick="topFunction()" id="myBtnTop" title="Go to top">Наверх</button>
+
+
+<button onclick="bottomFunction()" id="myBtnBottom" title="Go to bottom">Вниз</button>
+
 <div class="container">
     <h1>Публікації на кожень день</h1>
     <hr />
@@ -40,6 +85,46 @@
         </form>
     </div>
 </div>
+
+
+<script>
+
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("myBtnTop").style.display = "block";
+            document.getElementById("myBtnBottom").style.display = "none";
+        } else {
+            document.getElementById("myBtnTop").style.display = "none";
+            document.getElementById("myBtnBottom").style.display = "block";
+        }
+    }
+
+
+    function topFunction() {
+        document.body.scrollTop = 0; // Для Safari
+        document.documentElement.scrollTop = 0; // Для Chrome, Firefox, IE та Opera
+    }
+
+
+    function bottomFunction() {
+        window.scrollTo(0,document.body.scrollHeight);
+    }
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
 
 </body>
 </html>

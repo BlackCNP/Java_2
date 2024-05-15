@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -60,10 +61,15 @@ public class PostController {
 
 
     @GetMapping("/posts/create")
-    public String createNewPost(Model model) {
+    @PreAuthorize("isAuthenticated()")
+    public String createNewPost(Model model, Principal principal) {
 
+        String authUsername = "anonymousUser";
+        if (principal != null) {
+            authUsername = principal.getName();
+        }
 
-        Optional<Account> optionalAccount = accountService.findByEmail("user@hello.world");
+        Optional<Account> optionalAccount = accountService.findByEmail(authUsername);
         if (optionalAccount.isPresent()) {
             Post post = new Post();
             post.setAccount(optionalAccount.get());
@@ -74,7 +80,14 @@ public class PostController {
         }
     }
     @PostMapping("/posts/create")
-    public String createNewPost(@ModelAttribute Post post) {
+    public String createNewPost(@ModelAttribute Post post, Principal principal) {
+        String authUsername = "anonymousUser";
+        if (principal != null) {
+            authUsername = principal.getName();
+        }
+        if (post.getAccount().getEmail().compareToIgnoreCase(authUsername) < 0) {
+
+        }
         postService.save(post);
         return "redirect:/posts/" + post.getId();
     }
