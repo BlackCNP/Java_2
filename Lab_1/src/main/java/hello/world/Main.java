@@ -90,6 +90,7 @@ public class Main {
                         System.out.println("Замовлення створенно успішно. Вітаю, ви придбали:");
                         for (Product product : order.getProducts()) {
                             System.out.println(product.getName()+" за "+ product.getPrice() );
+                            System.out.println("Замовлення створено: " + order.getDate());
                         }
                         cart.getProducts().clear();
                     } else {
