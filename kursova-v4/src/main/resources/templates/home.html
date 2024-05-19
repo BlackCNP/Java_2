@@ -10,33 +10,145 @@
 
     <style>
 
+        body {
+            background-color: #121212;
+            color: #E0E0E0;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
+        .container {
+            background-color: #1E1E1E;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        h1 {
+            color: #BB86FC;
+            text-align: center;
+        }
+
+        hr {
+            border: 1px solid #333;
+            margin: 1.5rem 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        ul li {
+            margin: 0 1rem;
+        }
+
+        ul li a {
+            color: #BB86FC;
+            text-decoration: none;
+            border: 1px solid #BB86FC;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        ul li a:hover {
+            background-color: #03DAC6;
+            color: #121212;
+        }
+
+        .posts-container {
+            margin-top: 2rem;
+        }
+
+        .post {
+            background-color: #2C2C2C;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .post h2 a {
+            color: #BB86FC;
+            text-decoration: none;
+        }
+
+        .post h2 a:hover {
+            color: #03DAC6;
+        }
+
+        .post h5 {
+            color: #03DAC6;
+            margin: 0.5rem 0;
+        }
+
+        .post p {
+            line-height: 1.6;
+            margin-top: 1rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        form label {
+            color: #BB86FC;
+            margin-bottom: 0.5rem;
+        }
+
+        form button {
+            background-color: #BB86FC;
+            color: #000000;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #03DAC6;
+            color: #121212;
+        }
 
         #myBtnTop, #myBtnBottom {
-            display: none; /* Приховати кнопки за замовчуванням */
-            position: fixed; /* Зафіксувати положення кнопок */
-            right: 30px; /* Розташувати кнопки справа */
-            z-index: 99; /* Зробити кнопки над рівнем інших елементів */
-            border: none; /* Видалити рамку */
-            outline: none; /* Видалити контур */
-            background-color: #0f0; /* Задати колір фону */
-            color: white; /* Задати колір тексту */
-            cursor: pointer; /* Додати вказівник курсору при наведенні */
-            padding: 15px; /* Збільшити розмір кнопок */
-            border-radius: 10px; /* Закруглити кути кнопок */
+            display: none;
+            position: fixed;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #BB86FC;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
         }
 
         #myBtnTop {
-            bottom: 60px; /* Розташувати кнопку "Наверх" трохи вище кнопки "Вниз" */
+            bottom: 60px;
         }
 
         #myBtnBottom {
-            bottom: 20px; /* Розташувати кнопку "Вниз" внизу сторінки */
+            bottom: 20px;
         }
 
         #myBtnTop:hover, #myBtnBottom:hover {
-            background-color: #555;
+            background-color: #03DAC6;
         }
+
 
     </style>
 
@@ -103,8 +215,8 @@
 
 
     function topFunction() {
-        document.body.scrollTop = 0; // Для Safari
-        document.documentElement.scrollTop = 0; // Для Chrome, Firefox, IE та Opera
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     }
 
 

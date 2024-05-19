@@ -1,5 +1,12 @@
 # Курсова
 
+
+-------
+# Додано
+http://localhost:8080/swagger-ui/index.html?continue=#/  для перегляду swagger
+
+
+
 -------
 # Реєстрація та логін
 

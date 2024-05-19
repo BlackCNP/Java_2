@@ -1,0 +1,26 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kursova-v4
+    container_name: kursova-v4
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/data
+      - ./src/main/resources/application.properties:/app/application.properties  # Змінено цей рядок
+    environment:
+      - SPRING_PROFILES_ACTIVE=local  # Додано для активації профілю "local"
+
+  h2console:
+    image: "buildo/h2database"
+    container_name: h2console
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./data:/data
+
+volumes:
+  data:

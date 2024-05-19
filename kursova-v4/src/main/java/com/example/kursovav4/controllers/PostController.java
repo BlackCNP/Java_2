@@ -7,8 +7,10 @@ import com.example.kursovav4.services.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -69,10 +71,10 @@ public class PostController {
                 postService.save(existingPost);
                 return "redirect:/posts/" + existingPost.getId();
             } else {
-                return "redirect:/pomilka";
+                return "pomilka";
             }
         } else {
-            return "redirect:/pomilka";
+            return "pomilka";
         }
     }
 
@@ -99,7 +101,7 @@ public class PostController {
             model.addAttribute("post", post);
             return "post_create";
         } else {
-            return "redirect:/pomilka/";
+            return "pomilka";
         }
     }
     @PostMapping("/posts/create")
@@ -141,15 +143,14 @@ public class PostController {
                 model.addAttribute("post", post);
                 return "post_edit";
             } else {
-                return "redirect:/pomilka/";
+                return "pomilka";
             }
         } else {
-            return "redirect:/pomilka/";
+            return "pomilka";
         }
     }
 
     @GetMapping("/posts/{id}/delete")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(summary = "Видалити пост за ID", description = "Видалити існуючий пост з бази даних за його ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Пост успішно видалено"),
@@ -157,17 +158,22 @@ public class PostController {
             @ApiResponse(responseCode = "403", description = "Користувач не має прав на видалення цього поста"),
             @ApiResponse(responseCode = "404", description = "Пост не знайдено в базі даних")
     })
-    public String deletePost(@PathVariable Long id) {
+    public String deletePost(@PathVariable Long id, Principal principal) {
+        String authUsername = principal != null ? principal.getName() : "anonymousUser";
 
-        // find post by id
         Optional<Post> optionalPost = postService.getById(id);
         if (optionalPost.isPresent()) {
             Post post = optionalPost.get();
 
-            postService.delete(post);
-            return "redirect:/";
+            String postAuthor = post.getAccount().getEmail();
+            if (authUsername.equals(postAuthor) || SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+                postService.delete(post);
+                return "redirect:/";
+            } else {
+                return "pomilka";
+            }
         } else {
-            return "redirect:/pomilka/";
+            return "pomilka";
         }
     }
 
