@@ -3,6 +3,9 @@ package com.example.kursovav4.controllers;
 
 import com.example.kursovav4.models.Account;
 import com.example.kursovav4.services.AccountService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +24,7 @@ public class RegisterController {
 
 
     @GetMapping("/register")
+    @Operation(summary = "Отримати сторінку реєстрації", description = "Отримати сторінку для реєстрації нового користувача")
     public String getRegisterPage(Model model) {
         Account account = new Account();
         model.addAttribute("account", account);
@@ -30,6 +34,12 @@ public class RegisterController {
 
 
     @PostMapping("/register")
+    @Operation(summary = "Зареєструвати нового користувача", description = "Зареєструвати нового користувача в системі")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Успішна реєстрація"),
+            @ApiResponse(responseCode = "400", description = "Помилка валідації даних"),
+            @ApiResponse(responseCode = "500", description = "Внутрішня помилка сервера")
+    })
     public String registerNewUser(@ModelAttribute Account account) {
         accountService.save(account);
         return "redirect:/";

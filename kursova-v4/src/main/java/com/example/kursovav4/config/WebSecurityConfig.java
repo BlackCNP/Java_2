@@ -36,14 +36,17 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(antMatcher("/css/**")).permitAll();
                     auth.requestMatchers(antMatcher("/js/**")).permitAll();
-                    auth.requestMatchers(antMatcher("/images/**")).permitAll();
+                 //   auth.requestMatchers(antMatcher("/images/**")).permitAll();
                     auth.requestMatchers(antMatcher("/fonts/**")).permitAll();
                     auth.requestMatchers(antMatcher("/webjars/**")).permitAll();
                     auth.requestMatchers(antMatcher("/")).permitAll();
                     auth.requestMatchers(antMatcher("/rss/**")).permitAll();
                     auth.requestMatchers(antMatcher("/register/**")).permitAll();
                     auth.requestMatchers(antMatcher("/h2-console/**")).permitAll();
+                    auth.requestMatchers(antMatcher("/swagger-ui/")).permitAll();
                     auth.requestMatchers(antMatcher("/posts/**")).permitAll();
+                    auth.requestMatchers(antMatcher("/pomilka/")).permitAll();
+                    auth.requestMatchers(antMatcher("/pomilka/**")).permitAll();
                     auth.requestMatchers(PathRequest.toH2Console()).permitAll();
                     auth.anyRequest().authenticated();
                 })
