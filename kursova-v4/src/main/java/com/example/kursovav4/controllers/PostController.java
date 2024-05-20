@@ -54,18 +54,18 @@ public class PostController {
 
     @PostMapping("/posts/{id}")
     @PreAuthorize("isAuthenticated()")
-    @Operation(summary = "Отримати пост за ID", description = "Отримати деталі поста з бази даних за його ID")
+    @Operation(summary = "Оновити пост за ID", description = "Оновити деталі поста з бази даних за його ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Повертає деталі поста, якщо він існує"),
+            @ApiResponse(responseCode = "200", description = "Повертає оновлений пост, якщо він існує"),
             @ApiResponse(responseCode = "404", description = "Пост не знайдено в базі даних")
     })
-    public String updatePost(@PathVariable Long id, Post post, BindingResult result, Model model, Principal principal) {
+    public String updatePost(@PathVariable Long id, @ModelAttribute Post post, BindingResult result, Model model, Principal principal) {
         String authUsername = principal != null ? principal.getName() : "anonymousUser";
 
         Optional<Post> optionalPost = postService.getById(id);
         if (optionalPost.isPresent()) {
             Post existingPost = optionalPost.get();
-            if (existingPost.getAccount().getEmail().equalsIgnoreCase(authUsername)) {
+            if (existingPost.getAccount() != null && existingPost.getAccount().getEmail().equalsIgnoreCase(authUsername)) {
                 existingPost.setTitle(post.getTitle());
                 existingPost.setBody(post.getBody());
                 postService.save(existingPost);
