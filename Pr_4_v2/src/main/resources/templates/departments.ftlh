@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>departments</title>
@@ -38,7 +38,10 @@
         <input type="text" name="classroom" required>
     </div>
     <button type="submit">Додати</button>
-</form>
+    <br>
 
+
+</form>
+<button><a href="/subjects">Додати Предмет</a> </button>
 </body>
 </html>
