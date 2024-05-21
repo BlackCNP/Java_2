@@ -33,6 +33,13 @@ http://localhost:8080/swagger-ui/index.html?continue=#/  для перегляд
 
 [Відео з результатами](https://drive.google.com/drive/folders/1IO6kybpU9vI3b_LYfPyijotD9fLwEYGg?usp=sharing)
 
+![](photo/swagger_desc.png)
+
+![](photo/swagger.png)
+
+
+
+
 ------
 # Тести
 

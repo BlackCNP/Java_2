@@ -187,6 +187,15 @@ existingDepartment.setClassroom(department.getClassroom());
 ![](pht/Subj.gif)
 
 
+## Підключення до БД
+![](pht/Db.png)
+
+
+![](pht/connect_to_db.png)
+## Додавання в БД 
+
+![](pht/work_with_db.gif)
+
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake-dark.svg">
