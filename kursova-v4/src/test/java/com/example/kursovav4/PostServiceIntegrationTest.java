@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class PostControllerIntegrationTest {             // Створив акк, створив публікацію до цього аккаунту, перевірив чи все норм, видалив та переівив шо і як
+public class PostServiceIntegrationTest {             // Створив акк, створив публікацію до цього аккаунту, перевірив чи все норм, видалив та переівив шо і як
 
     @Autowired
     private PostService postService;
