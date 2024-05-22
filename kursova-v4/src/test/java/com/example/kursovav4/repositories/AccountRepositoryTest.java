@@ -24,16 +24,16 @@ public class AccountRepositoryTest {
     @Test
     public void whenFindOneByEmail_thenReturnAccount() {
 
-        Account alex = new Account();
-        alex.setEmail("test@test.test");
-        entityManager.persist(alex);
+        Account test = new Account();
+        test.setEmail("test@test.test");
+        entityManager.persist(test);
         entityManager.flush();
 
 
-        Optional<Account> found = accountRepository.findOneByEmail(alex.getEmail());
+        Optional<Account> found = accountRepository.findOneByEmail(test.getEmail());
 
 
         assertThat(found.isPresent()).isTrue();
-        assertThat(found.get().getEmail()).isEqualTo(alex.getEmail());
+        assertThat(found.get().getEmail()).isEqualTo(test.getEmail());
     }
 }

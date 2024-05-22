@@ -10,9 +10,9 @@ services:
       - "8080:8080"
     volumes:
       - ./data:/data
-      - ./src/main/resources/application.properties:/app/application.properties  # Змінено цей рядок
+      - ./src/main/resources/application.properties:/app/application.properties
     environment:
-      - SPRING_PROFILES_ACTIVE=local  # Додано для активації профілю "local"
+      - SPRING_PROFILES_ACTIVE=local
 
   h2console:
     image: "buildo/h2database"

@@ -51,5 +51,5 @@ public class PostControllerTest {
                 .andExpect(view().name("post"));
     }
 
-    // Add more tests for other methods in your controller
+
 }
