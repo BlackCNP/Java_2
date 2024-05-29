@@ -36,7 +36,6 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(antMatcher("/css/**")).permitAll();
                     auth.requestMatchers(antMatcher("/js/**")).permitAll();
-                 //   auth.requestMatchers(antMatcher("/images/**")).permitAll();
                     auth.requestMatchers(antMatcher("/fonts/**")).permitAll();
                     auth.requestMatchers(antMatcher("/webjars/**")).permitAll();
                     auth.requestMatchers(antMatcher("/")).permitAll();

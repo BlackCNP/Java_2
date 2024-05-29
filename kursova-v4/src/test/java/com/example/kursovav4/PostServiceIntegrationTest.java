@@ -42,7 +42,7 @@ public class PostServiceIntegrationTest {             // Створив акк, 
 
         postService.delete(post);
 
-        // отримав
+
         assertFalse(postService.getById(post.getId()).isPresent());
     }
 }
