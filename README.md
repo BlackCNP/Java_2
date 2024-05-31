@@ -1,8 +1,10 @@
 # Java_2
 
 
- - [Робота 1](https://github.com/BlackCNP/Java_2/tree/main/Lab_1)  
- - [Робота 2](https://github.com/BlackCNP/Java_2/tree/main/Pr_4_v2) 
+ - [Робота 1](https://github.com/BlackCNP/Java_2/tree/main/Lab_1)
+ - [Робота 2](https://github.com/BlackCNP/Java_2/tree/main/Sr_2)
+ - [Робота 3](https://github.com/BlackCNP/Java_2/tree/main/Pr_4_v2)
+ - 
  - [Курсова](https://github.com/BlackCNP/Java_2/tree/main/kursova-v4)
 
 
