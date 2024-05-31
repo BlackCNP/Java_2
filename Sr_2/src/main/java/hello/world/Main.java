@@ -32,8 +32,6 @@ public class Main {
 
         reportGenerator.generateExpenseReport(transaktions);
 
-        TransactionAnalyzerTest test = new TransactionAnalyzerTest();
-        test.testReadTransactions();
-        test.testFindTopExpenses();
+
     }
 }

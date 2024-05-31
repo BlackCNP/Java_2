@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TransactionAnalyzerTest {
+    // Створення тестових даних
     @Test
     public void testCalculateTotalBalance() {
         Transaktion transaction1 = new Transaktion("2023-01-01", 100.0, "Дохід");
@@ -16,7 +17,7 @@ public class TransactionAnalyzerTest {
         TransactionAnalyzer analyzer = new TransactionAnalyzer(transactions);
 
         double result = analyzer.calculateTotalBalance();
-
+// Перевірка результату
         Assertions.assertEquals(200.0, result, "Розрахунок загального балансу неправильний");
     }
 
