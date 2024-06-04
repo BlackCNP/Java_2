@@ -77,11 +77,7 @@ public class PostController {
 
     @GetMapping("/posts/create")
     @PreAuthorize("isAuthenticated()")
-    @Operation(summary = "Створити новий пост", description = "Створити новий пост у базі даних")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Створення поста успішне"),
-            @ApiResponse(responseCode = "404", description = "Користувача не знайдено")
-    })
+
     public String createNewPost(Model model, Principal principal) {
         String authUsername = "anonymousUser";
         if (principal != null) {

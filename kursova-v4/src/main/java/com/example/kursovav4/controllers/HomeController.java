@@ -17,7 +17,7 @@ public class HomeController {
     private PostService postService;
 
     @GetMapping("/")
-    @Operation(summary = "Отримати домашню сторінку", description = "Отримати домашню сторінку зі списком усіх постів")
+
     public String home(Model model) {
         List<Post> posts = postService.getAll();
         model.addAttribute("posts", posts);

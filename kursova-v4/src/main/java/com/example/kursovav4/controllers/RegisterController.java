@@ -24,7 +24,7 @@ public class RegisterController {
 
 
     @GetMapping("/register")
-    @Operation(summary = "Отримати сторінку реєстрації", description = "Отримати сторінку для реєстрації нового користувача")
+
     public String getRegisterPage(Model model) {
         Account account = new Account();
         model.addAttribute("account", account);
