@@ -29,7 +29,7 @@ public class PostController {
     private PostService postService;
 
     @Autowired
-   private AccountService accountService;
+    private AccountService accountService;
 
     @GetMapping("/posts/{id}")
     @Operation(summary = "Отримати пост за ID", description = "Отримати пост з бази даних за його ID")
@@ -38,8 +38,6 @@ public class PostController {
             @ApiResponse(responseCode = "404", description = "Пост не знайдено")
     })
     public String getPost(@PathVariable Long id, Model model) {
-
-
         Optional<Post> optionalPost = this.postService.getById(id);
 
         if (optionalPost.isPresent()) {
@@ -50,7 +48,6 @@ public class PostController {
             return "pomilka";
         }
     }
-
 
     @PostMapping("/posts/{id}")
     @PreAuthorize("isAuthenticated()")
@@ -78,17 +75,14 @@ public class PostController {
         }
     }
 
-
     @GetMapping("/posts/create")
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Створити новий пост", description = "Створити новий пост у базі даних")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Створення поста успішне"),
-            @ApiResponse(responseCode = "401", description = "Неавторизований"),
             @ApiResponse(responseCode = "404", description = "Користувача не знайдено")
     })
     public String createNewPost(Model model, Principal principal) {
-
         String authUsername = "anonymousUser";
         if (principal != null) {
             authUsername = principal.getName();
@@ -104,11 +98,11 @@ public class PostController {
             return "pomilka";
         }
     }
+
     @PostMapping("/posts/create")
     @Operation(summary = "Створити новий пост", description = "Створити новий пост у базі даних")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Створення поста успішне"),
-            @ApiResponse(responseCode = "401", description = "Неавторизований"),
             @ApiResponse(responseCode = "404", description = "Користувача не знайдено")
     })
     public String createNewPost(@ModelAttribute Post post, Principal principal) {
@@ -116,9 +110,16 @@ public class PostController {
         if (principal != null) {
             authUsername = principal.getName();
         }
-        if (post.getAccount().getEmail().compareToIgnoreCase(authUsername) < 0) {
 
+        if (post.getAccount() == null) {
+            Optional<Account> optionalAccount = accountService.findByEmail(authUsername);
+            if (optionalAccount.isPresent()) {
+                post.setAccount(optionalAccount.get());
+            } else {
+                return "pomilka";
+            }
         }
+
         postService.save(post);
         return "redirect:/posts/" + post.getId();
     }
@@ -176,6 +177,4 @@ public class PostController {
             return "pomilka";
         }
     }
-
-
 }
