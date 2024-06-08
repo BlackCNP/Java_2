@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LoginController {
 
     @GetMapping("/login")
-    @Operation(summary = "Отримати сторінку входу", description = "Отримати сторінку для авторизації користувача")
+    
     public String getLoginPage() {
 
         return "login";

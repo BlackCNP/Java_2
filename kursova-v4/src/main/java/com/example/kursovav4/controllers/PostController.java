@@ -49,31 +49,7 @@ public class PostController {
         }
     }
 
-    @PostMapping("/posts/{id}")
-    @PreAuthorize("isAuthenticated()")
-    @Operation(summary = "Оновити пост за ID", description = "Оновити деталі поста з бази даних за його ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Повертає оновлений пост, якщо він існує"),
-            @ApiResponse(responseCode = "404", description = "Пост не знайдено в базі даних")
-    })
-    public String updatePost(@PathVariable Long id, @ModelAttribute Post post, BindingResult result, Model model, Principal principal) {
-        String authUsername = principal != null ? principal.getName() : "anonymousUser";
 
-        Optional<Post> optionalPost = postService.getById(id);
-        if (optionalPost.isPresent()) {
-            Post existingPost = optionalPost.get();
-            if (existingPost.getAccount() != null && existingPost.getAccount().getEmail().equalsIgnoreCase(authUsername)) {
-                existingPost.setTitle(post.getTitle());
-                existingPost.setBody(post.getBody());
-                postService.save(existingPost);
-                return "redirect:/posts/" + existingPost.getId();
-            } else {
-                return "pomilka";
-            }
-        } else {
-            return "pomilka";
-        }
-    }
 
     @GetMapping("/posts/create")
     @PreAuthorize("isAuthenticated()")
@@ -120,6 +96,7 @@ public class PostController {
         return "redirect:/posts/" + post.getId();
     }
 
+
     @GetMapping("/posts/{id}/edit")
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Отримати пост для редагування", description = "Отримати пост з бази даних для редагування за його ID")
@@ -136,7 +113,8 @@ public class PostController {
 
         if (optionalPost.isPresent()) {
             Post post = optionalPost.get();
-            if (post.getAccount().getEmail().equalsIgnoreCase(authUsername)) {
+            boolean isAdmin = SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+            if (post.getAccount().getEmail().equalsIgnoreCase(authUsername) || isAdmin) {
                 model.addAttribute("post", post);
                 return "post_edit";
             } else {
@@ -147,6 +125,32 @@ public class PostController {
         }
     }
 
+    @PostMapping("/posts/{id}")
+    @PreAuthorize("isAuthenticated()")
+    @Operation(summary = "Оновити пост за ID", description = "Оновити деталі поста з бази даних за його ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Повертає оновлений пост, якщо він існує"),
+            @ApiResponse(responseCode = "404", description = "Пост не знайдено в базі даних")
+    })
+    public String updatePost(@PathVariable Long id, @ModelAttribute Post post, BindingResult result, Model model, Principal principal) {
+        String authUsername = principal != null ? principal.getName() : "anonymousUser";
+
+        Optional<Post> optionalPost = postService.getById(id);
+        if (optionalPost.isPresent()) {
+            Post existingPost = optionalPost.get();
+            boolean isAdmin = SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+            if (existingPost.getAccount() != null && (existingPost.getAccount().getEmail().equalsIgnoreCase(authUsername) || isAdmin)) {
+                existingPost.setTitle(post.getTitle());
+                existingPost.setBody(post.getBody());
+                postService.save(existingPost);
+                return "redirect:/posts/" + existingPost.getId();
+            } else {
+                return "pomilka";
+            }
+        } else {
+            return "pomilka";
+        }
+    }
     @GetMapping("/posts/{id}/delete")
     @Operation(summary = "Видалити пост за ID", description = "Видалити існуючий пост з бази даних за його ID")
     @ApiResponses(value = {
